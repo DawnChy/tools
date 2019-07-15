@@ -134,7 +134,7 @@ export const flow2str = (val, type) => {
  * @param {Number} min 最小值（必填）
  * @param {Number} max 最大值（必填）
  * @param {Number} count 数量
- * @param {Number | Array} 一个数或者包含多个数的数组
+ * @return {Number | Array} 一个数或者包含多个数的数组
  */
 export const random = (min, max, count) => {
   if (count && count > 1) {
@@ -146,5 +146,19 @@ export const random = (min, max, count) => {
     return r
   } else {
     return Math.floor(Math.random() * (max - min) + min)
+  }
+}
+
+/**
+ * @description 将空值过滤为指定值
+ * @param {*} val 传入值
+ * @param {*} fill 填充值
+ * @return {*}
+ */
+export count null2fill = (val, fill) => {
+  if (val) {
+    return val
+  } else {
+    return fill
   }
 }
