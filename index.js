@@ -155,10 +155,32 @@ export const random = (min, max, count) => {
  * @param {*} fill 填充值
  * @return {*}
  */
-export count null2fill = (val, fill) => {
+export const null2fill = (val, fill) => {
   if (val) {
     return val
   } else {
     return fill
   }
 }
+
+/**
+ * @description 绑定事件
+ * @param {Element} element 元素
+ * @param {String} event 事件名称
+ * @param {Function} handler 事件
+ */
+export const addEvent = (function () {
+  if (document.addEventListener) {
+    return function (element, event, handler) {
+      if (element && event && handler) {
+        element.addEventListener(event, handler, false)
+      }
+    }
+  } else {
+    return function (element, event, handler) {
+      if (element && event && handler) {
+        element.attachEvent('on' + event, handler)
+      }
+    }
+  }
+})()
