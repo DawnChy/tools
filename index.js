@@ -26,7 +26,7 @@ export const TypeOf = obj => {
 }
 
 /**
- * @description 深拷贝函数 （递归）
+ * @description 深拷贝（递归）
  * @param (*) data 数据
  * returns (*) data
  */
@@ -48,3 +48,10 @@ export const deepClone1 = data => {
   }
   return obj
 }
+
+/**
+ * @description 深拷贝（JSON解析与反解析）
+ * @param (*) data 数据
+ * returns (*) data
+ */
+export const deepClone2 = data => JSON.parse(JSON.stringify(data))
