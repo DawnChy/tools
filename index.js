@@ -73,9 +73,29 @@ export const numZeroFill = n => {
 /**
  * @description 将时间过滤为指定格式的时间字符串
  * @param (Date | String) date 时间对象或时间字符串
- * @param (String) format 格式字符串（hh:mm:ss，yyyymmdd，yyyymmddhhmmss，yyyy-mm-dd，yyyy-mm-dd hh:mm:ss，yyyy/mm/dd，yyyy/mm/dd）
+ * @param (String) format 格式字符串（hh:mm:ss，hh-mm-ss，YYYYMMDD，YYYYMMDDhhmmss，YYYY-MM-DD，
+ *                                   YYYY-MM-DD hh:mm:ss，YYYY/MM/DD，YYYY/MM/DD hh:mm:ss，cn）
  * returns (String)
  */
 export const date2str = (date, format) => {
-
+  date = new Date(date)
+  const Y = date.getFullYear
+  const M = numZeroFill(date.getMonth() + 1)
+  const D = numZeroFill(date.getDate())
+  const h = numZeroFill(date.getHours())
+  const m = numZeroFill(date.getMinutes())
+  const s = numZeroFill(date.getSeconds())
+  
+  switch (format) {
+    case 'hh:mm:ss' : return `${h}:${m}:${s}`
+    case 'hh-mm-ss' : return `${h}-${m}-${s}`
+    case 'YYYYMMDD' : return `${Y}${M}${D}`
+    case 'YYYYMMDDhhmmss' : return `${Y}${M}${D}${h}${m}${s}`
+    case 'YYYY-MM-DD' : return `${Y}-${M}-${D}`
+    case 'YYYY-MM-DD hh:mm:ss' : return `${Y}-${M}-${D} ${h}:${m}:${s}`
+    case 'YYYY/MM/DD' : return `${Y}/${M}/${D}`
+    case 'YYYY/MM/DD hh:mm:ss' : return `${Y}/${M}/${D} ${h}:${m}:${s}`
+    case 'cn' : return `${Y}年${M}月${D}日 ${h}时${m}分${s}秒`
+    default: return `${Y}-${M}-${D} ${h}:${m}:${s}`
+  }
 }
