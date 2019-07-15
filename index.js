@@ -128,3 +128,23 @@ export const flow2str = (val, type) => {
     }
   }
 }
+
+/**
+ * @description 生成随机数
+ * @param {Number} min 最小值（必填）
+ * @param {Number} max 最大值（必填）
+ * @param {Number} count 数量
+ * @param {Number | Array} 一个数或者包含多个数的数组
+ */
+export const random = (min, max, count) => {
+  if (count && count > 1) {
+    let r = []
+    while (count > 0) {
+      r.push(Math.floor(Math.random() * (max - min) + min))
+      count--
+    }
+    return r
+  } else {
+    return Math.floor(Math.random() * (max - min) + min)
+  }
+}
