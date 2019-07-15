@@ -25,3 +25,26 @@ export const TypeOf = obj => {
   }
 }
 
+/**
+ * @description 深拷贝函数 （递归）
+ * @param (*) data 数据
+ * returns (*) data
+ */
+export const deepClone1 = data => {
+  let obj = null
+  const type = typeOf(data)
+  if （type === ‘array’）{
+    obj = []
+    for (let i = 0, len = data.length; i < len; i++) {
+      obj.push(deepClone1(data[i]))
+    }
+  } else if (type === 'object') {
+    obj = {}
+    for (let key in data) {
+      obj[key] = deepClone1(data[key])
+    }
+  } else {
+    return data
+  }
+  return obj
+}
