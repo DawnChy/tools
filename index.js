@@ -113,7 +113,18 @@ export const flow2str = (val, type) => {
     case 'KB': return (val / 1024).toFixed(2)
     case 'B': return val.toFixed(2)
     default: {
-      let gb = 
+      let gb = (val / 1024 / 1024 / 1024).toFixed(2)
+      let mb = (val / 1024 / 1024).toFixed(2)
+      let kb = (val / 1024).toFixed(2)
+      if (val < 1024) {
+        return val + 'B'
+      } else if (kb < 1024) {
+        return kb + 'KB'
+      } else if (mb < 1024) {
+        return mb + 'MB'
+      } else if (gb < 1024) {
+        return gb + 'GB'
+      }
     }
   }
 }
