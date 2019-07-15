@@ -55,3 +55,17 @@ export const deepClone1 = data => {
  * returns (*) data
  */
 export const deepClone2 = data => JSON.parse(JSON.stringify(data))
+
+/**
+ * @description 将小于10的数字十位补零转字符串输出
+ * @param (Number) n 数字
+ * returns (String) string
+ */
+export const numZeroFill = n => {
+  n = number(n)
+  if (n < 10){
+    return `0${n}`
+  } else {
+    return `${n}`
+  }
+}
