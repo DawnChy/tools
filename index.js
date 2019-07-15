@@ -69,3 +69,13 @@ export const numZeroFill = n => {
     return `${n}`
   }
 }
+
+/**
+ * @description 将时间过滤为指定格式的时间字符串
+ * @param (Date | String) date 时间对象或时间字符串
+ * @param (String) format 格式字符串（hh:mm:ss，yyyymmdd，yyyymmddhhmmss，yyyy-mm-dd，yyyy-mm-dd hh:mm:ss，yyyy/mm/dd，yyyy/mm/dd）
+ * returns (String)
+ */
+export const date2str = (date, format) => {
+
+}
