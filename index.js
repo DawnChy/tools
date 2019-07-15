@@ -99,3 +99,21 @@ export const date2str = (date, format) => {
     default: return `${Y}-${M}-${D} ${h}:${m}:${s}`
   }
 }
+
+/**
+ * @description 流量单位转换
+ * @param (Number) val 传入值
+ * @param (String) type 类型
+ * returns (Number, String) 传入单位（type）
+ */
+export const flow2str = (val, type) => {
+  switch (type) {
+    case 'GB': return (val / 1024 / 1024 / 1024).toFixed(2)
+    case 'MB': return (val / 1024 / 1024).toFixed(2)
+    case 'KB': return (val / 1024).toFixed(2)
+    case 'B': return val.toFixed(2)
+    default: {
+      let gb = 
+    }
+  }
+}
