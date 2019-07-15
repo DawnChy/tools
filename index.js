@@ -184,3 +184,25 @@ export const addEvent = (function () {
     }
   }
 })()
+
+/**
+ * @description 解绑事件
+ * @param {Element} element 元素
+ * @param {String} event 事件名称
+ * @param {Function} handler 事件
+ */
+export const removeEvent = (function () {
+  if (document.removeEventListener) {
+    return function (element, event, handler) {
+      if (element && event) {
+        element.removeEventListener(event, handler, false)
+      }
+    }
+  } else {
+    return function (element, event, handler) {
+      if (element && event) {
+        element.detachEvent('on' + event, handler)
+      }
+    }
+  }
+})()
