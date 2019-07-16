@@ -206,3 +206,25 @@ export const removeEvent = (function () {
     }
   }
 })()
+
+/**
+ * @description 数组扁平化（递归实现很简洁易懂，就是将每一项遍历，如果某一项为数组，则让该项继续调用，这里指定了 depth 作为扁平化的深度，因为这个参数对数组的每一项都要起作用，故放在循环的里面。）
+ * @param {Array} array 待扁平化数组
+ * @param {Number} depth 深度
+ * @returns {Array} 指定深度的数组
+ */
+export const flattenDepth = (array, depth = 1) => {
+  let result = []
+  array.forEach(item => {
+    let d = depth
+    if (Array.isArray(item) && d > 0) {
+      result.push(...(flattenDepth(item, --d)))
+    } else {
+      result.push(item)
+    }
+  })
+  return result
+}
+console.log(flattenDepth([1, [2, [3, [4]], 5]])) // [ 1, 2, [ 3, [ 4 ] ], 5 ]
+console.log(flattenDepth([1, [2, [3, [4]], 5]], 2)) // [ 1, 2, 3, [ 4 ], 5 ]
+console.log(flattenDepth([1, [2, [3, [4]], 5]], 3)) // [ 1, 2, 3, 4, 5 ]
