@@ -228,3 +228,31 @@ export const flattenDepth = (array, depth = 1) => {
 console.log(flattenDepth([1, [2, [3, [4]], 5]])) // [ 1, 2, [ 3, [ 4 ] ], 5 ]
 console.log(flattenDepth([1, [2, [3, [4]], 5]], 2)) // [ 1, 2, 3, [ 4 ], 5 ]
 console.log(flattenDepth([1, [2, [3, [4]], 5]], 3)) // [ 1, 2, 3, 4, 5 ]
+console.log(flattenDepth([1, [2, [3, [4]], 5]], 4)) // [ 1, 2, 3, 4, 5 ]
+
+/**
+ * @description 柯里化(每次判断参数的个数，与被柯里化的函数参数个数比较，如果小于就继续返回函数，否则就执行。)
+ * @param {Function} func 方法
+ * @returns {Function | func()} 返回函数本身或者函数执行结果
+ */
+export const curry = func => {
+  var l = func.length
+  return function curried() {
+    var args = [].slice.call(arguments)
+    if(args.length < l) {
+      return function() {
+        var argsInner = [].slice.call(arguments)
+        return curried.apply(this, args.concat(argsInner))
+      }
+    } else {
+      return func.apply(this, args)
+    }
+  }
+}
+var f = function(a, b, c) {
+ return console.log([a, b, c])
+};
+var curried = curry(f)
+curried(1)(2)(3) // => [1, 2, 3]
+curried(1, 2)(3) // => [1, 2, 3]
+curried(1, 2, 3) // => [1, 2, 3]
