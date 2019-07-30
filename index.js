@@ -33,7 +33,7 @@ export const TypeOf = obj => {
 export const deepClone1 = data => {
   let obj = null
   const type = typeOf(data)
-  if （type === ‘array’）{
+  if (type === 'array') {
     obj = []
     for (let i = 0, len = data.length; i < len; i++) {
       obj.push(deepClone1(data[i]))
